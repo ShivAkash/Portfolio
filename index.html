@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en" class="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#8a1c2b" />
+    <meta
+      name="description"
+      content="Shiv Akash S M — Computer Science undergraduate building machine learning systems and AI-powered products."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://drive.google.com" />
+    <link rel="preconnect" href="https://accounts.google.com" crossorigin />
+    <link rel="dns-prefetch" href="//drive.google.com" />
+    <link rel="dns-prefetch" href="//accounts.google.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <title>Shiv Akash S M — ML & Full-stack</title>
+    <script>
+      (function () {
+        try {
+          var t = localStorage.getItem('theme')
+          var dark =
+            t === 'dark' ||
+            (t !== 'light' &&
+              window.matchMedia('(prefers-color-scheme: dark)').matches)
+          document.documentElement.classList.toggle('dark', dark)
+          document.documentElement.classList.toggle('light', !dark)
+        } catch (e) {}
+      })()
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
