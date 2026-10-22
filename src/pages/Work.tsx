@@ -39,7 +39,7 @@ export function Work() {
 
         <LayoutGroup>
           <div
-            className="mt-8 flex flex-wrap gap-x-4 gap-y-2 border-b border-[var(--border)] pb-3"
+            className="mt-8 flex flex-wrap gap-x-5 gap-y-2 border-b border-[var(--border)] pb-4"
             role="tablist"
             aria-label="Filter projects"
           >
@@ -51,20 +51,13 @@ export function Work() {
                 aria-selected={filter === f}
                 onClick={() => setFilter(f)}
                 className={cn(
-                  'relative pb-2 font-mono text-xs transition-colors',
+                  'relative min-h-10 border-b-2 border-transparent py-1.5 font-mono text-xs transition-colors',
                   filter === f
-                    ? 'text-[var(--accent)]'
+                    ? 'border-[var(--accent-solid)] text-[var(--accent)]'
                     : 'text-[var(--muted)] hover:text-[var(--text)]',
                 )}
               >
                 {f}
-                {filter === f && (
-                  <motion.span
-                    layoutId="work-filter"
-                    className="absolute inset-x-0 -bottom-[13px] h-px bg-[var(--accent-solid)]"
-                    transition={{ duration: 0.15 }}
-                  />
-                )}
               </button>
             ))}
           </div>
