@@ -28,10 +28,10 @@ export function Contact() {
         description={`Get in touch with ${profile.name}.`}
         path="/contact"
       />
-      <div className="content-width py-16 sm:py-24">
+      <div className="content-width py-14 sm:py-20">
         <Reveal>
           <h1 className="text-3xl font-semibold tracking-tight">Contact</h1>
-          <p className="mt-3 max-w-md text-[var(--muted)]">
+          <p className="mt-3 max-w-[640px] text-[var(--muted)]">
             The fastest way to reach me is email. Happy to talk about internships,
             ML systems, or interesting problems.
           </p>

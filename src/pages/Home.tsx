@@ -27,7 +27,7 @@ export function Home() {
     <>
       <Seo path="/" />
 
-      <section className="content-width pt-16 pb-12 sm:pt-24">
+      <section className="content-width pt-14 pb-10 sm:py-20">
         <Reveal>
           <div className="flex flex-col items-start gap-6 sm:flex-row sm:items-start sm:gap-8">
             <img
@@ -55,7 +55,7 @@ export function Home() {
                 </h1>
               </div>
               <p className="mt-3 text-lg text-[var(--text)]">{profile.role}</p>
-              <p className="mt-4 text-[var(--muted)]">{profile.summary}</p>
+              <p className="mt-4 max-w-[640px] text-[var(--muted)]">{profile.summary}</p>
 
               <div className="mt-6 flex flex-wrap gap-2">
                 <LinkButton href={`mailto:${profile.email}`} variant="accent">
@@ -98,7 +98,7 @@ export function Home() {
       </section>
 
       {featuredProjects.length > 0 && (
-        <section className="content-width py-12">
+        <section className="content-width py-10 sm:py-20">
           <Reveal>
             <div className="mb-6 flex items-end justify-between gap-4">
               <h2 className="text-xl font-semibold">Selected work</h2>
@@ -110,7 +110,7 @@ export function Home() {
                 <ArrowRight size={14} strokeWidth={1.5} aria-hidden />
               </Link>
             </div>
-            <div className="grid gap-4 sm:grid-cols-2">
+            <div className="grid gap-5 min-[700px]:grid-cols-2">
               {featuredProjects.map((p) => (
                 <ProjectCard key={p.slug} project={p} />
               ))}
@@ -119,14 +119,14 @@ export function Home() {
         </section>
       )}
 
-      <section className="content-width py-12">
+      <section className="content-width py-10 sm:py-20">
         <Reveal>
           <h2 className="mb-6 text-xl font-semibold">Publication</h2>
           <PublicationCard />
         </Reveal>
       </section>
 
-      <section className="content-width py-12">
+      <section className="content-width py-10 sm:py-20">
         <Reveal>
           <h2 className="mb-6 text-xl font-semibold">Experience</h2>
           <ExperienceTimeline />
@@ -134,7 +134,7 @@ export function Home() {
       </section>
 
       {achievements.length > 0 && (
-        <section className="content-width py-12">
+        <section className="content-width py-10 sm:py-20">
           <Reveal>
             <h2 className="mb-6 text-xl font-semibold">Achievements</h2>
             <ul className="space-y-3">
@@ -154,14 +154,14 @@ export function Home() {
         </section>
       )}
 
-      <section className="content-width py-12">
+      <section className="content-width py-10 sm:py-20">
         <Reveal>
           <h2 className="mb-6 text-xl font-semibold">Tech stack</h2>
           <TechStack />
         </Reveal>
       </section>
 
-      <section className="content-width py-16 pb-24">
+      <section className="content-width py-10 pb-20 sm:py-20 sm:pb-24">
         <Reveal>
           {/* <p className="text-lg text-[var(--muted)]">
             Open to internships and collaborations in ML systems and full-stack

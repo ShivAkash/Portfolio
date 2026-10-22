@@ -31,6 +31,7 @@
   --accent-soft: color-mix(in srgb, #7a1f2e 12%, transparent);
   --accent-fg: #ffffff;
   --ring: #7a1f2e;
+  --container: 880px;
 }
 
 .dark {
@@ -126,20 +127,19 @@
 @layer utilities {
   .content-width {
     width: 100%;
-    max-width: 720px;
-    margin-inline: auto;
-    padding-inline: 1.25rem;
-  }
-
-  .content-width-wide {
-    width: 100%;
-    max-width: 1000px;
+    max-width: var(--container);
     margin-inline: auto;
     padding-inline: 1.25rem;
   }
 
   .hairline {
     border: 1px solid var(--border);
+  }
+
+  @media (min-width: 768px) {
+    .content-width {
+      padding-inline: 2rem;
+    }
   }
 
   .mono-meta {

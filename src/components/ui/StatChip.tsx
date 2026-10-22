@@ -24,16 +24,9 @@ export function StatChip({
 export function StatRow({ stats }: { stats: string[] }) {
   if (!stats.length) return null
   return (
-    <p className="flex flex-wrap items-center gap-x-2 gap-y-1">
-      {stats.map((s, i) => (
-        <span key={s} className="inline-flex items-center gap-x-2">
-          {i > 0 && (
-            <span className="text-[var(--border)] select-none" aria-hidden>
-              ·
-            </span>
-          )}
-          <StatChip>{s}</StatChip>
-        </span>
+    <p className="flex flex-wrap items-center gap-x-3 gap-y-1.5">
+      {stats.map((s) => (
+        <StatChip key={s}>{s}</StatChip>
       ))}
     </p>
   )

@@ -7,7 +7,7 @@ export function Footer() {
   const year = new Date().getFullYear()
   return (
     <footer className="no-print mt-auto border-t border-[var(--border)] py-8">
-      <div className="content-width-wide flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+      <div className="content-width flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
         <div className="space-y-1">
           <p className="mono-meta">
             © {year} {profile.name}

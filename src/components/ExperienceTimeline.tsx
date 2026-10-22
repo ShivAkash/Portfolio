@@ -73,13 +73,16 @@ function CompanyBlock({ item }: { item: ExperienceCompany }) {
         {item.roles.map((role) => (
           <div key={role.title + role.dateRange}>
             {multi && (
-              <div className="mb-1">
+              <div className="mb-1 flex flex-col gap-0.5 lg:flex-row lg:items-baseline lg:justify-between">
                 <p className="text-sm font-medium">{role.title}</p>
-                <p className="mono-meta">{role.dateRange}</p>
+                <p className="mono-meta lg:text-right">{role.dateRange}</p>
               </div>
             )}
             {!multi && (
-              <p className="text-sm text-[var(--text)]">{role.title}</p>
+              <div className="flex flex-col gap-0.5 lg:flex-row lg:items-baseline lg:justify-between">
+                <p className="text-sm text-[var(--text)]">{role.title}</p>
+                <p className="mono-meta lg:text-right">{role.dateRange}</p>
+              </div>
             )}
             <RoleDetails bullets={role.bullets} link={role.link} />
           </div>

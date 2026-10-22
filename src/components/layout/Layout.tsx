@@ -11,9 +11,12 @@ import { useResume } from '@/components/ResumeViewer'
 export function Layout() {
   const [cmdOpen, setCmdOpen] = useState(false)
   const [helpOpen, setHelpOpen] = useState(false)
-  const { openResume } = useResume()
+  const { openResume, closeResume } = useResume()
 
-  const openCommand = useCallback(() => setCmdOpen(true), [])
+  const openCommand = useCallback(() => {
+    closeResume()
+    setCmdOpen(true)
+  }, [closeResume])
   const openShortcuts = useCallback(() => setHelpOpen(true), [])
 
   useKeyboardNav({

@@ -11,9 +11,11 @@ import {
 } from 'react'
 import { Download, ExternalLink, X } from 'lucide-react'
 import { profile } from '@/data/content'
+import { useLocation } from 'react-router-dom'
 
 type ResumeContextValue = {
   openResume: (opener?: HTMLElement) => void
+  closeResume: () => void
 }
 
 const ResumeContext = createContext<ResumeContextValue | null>(null)
@@ -25,6 +27,7 @@ export function useResume() {
 }
 
 export function ResumeProvider({ children }: { children: ReactNode }) {
+  const location = useLocation()
   const [open, setOpen] = useState(false)
   const [src, setSrc] = useState<string>()
   const [loaded, setLoaded] = useState(false)
@@ -35,6 +38,9 @@ export function ResumeProvider({ children }: { children: ReactNode }) {
   const bodyRef = useRef<HTMLDivElement>(null)
   const openerRef = useRef<HTMLElement | undefined>(undefined)
   const timeoutRef = useRef<number | undefined>(undefined)
+  const openRef = useRef(open)
+  const previousPathRef = useRef(location.pathname)
+  openRef.current = open
 
   const shouldSkipPreload = useCallback(() => {
     const connection = (
@@ -58,7 +64,13 @@ export function ResumeProvider({ children }: { children: ReactNode }) {
       openerRef.current = opener
       setFailed(false)
       setOpen(true)
-      window.history.replaceState(null, '', `${window.location.pathname}${window.location.search}#resume`)
+      if (window.location.hash !== '#resume') {
+        window.history.pushState(
+          null,
+          '',
+          `${window.location.pathname}${window.location.search}#resume`,
+        )
+      }
       if (!src || shouldSkipPreload()) loadFrame()
     },
     [loadFrame, shouldSkipPreload, src],
@@ -89,16 +101,43 @@ export function ResumeProvider({ children }: { children: ReactNode }) {
   }, [open])
 
   useEffect(() => {
+    if (
+      previousPathRef.current !== location.pathname &&
+      openRef.current
+    ) {
+      closeResume()
+    }
+    previousPathRef.current = location.pathname
+  }, [closeResume, location.pathname])
+
+  useEffect(() => {
     const openFromHash = () => {
       if (window.location.hash === '#resume') {
         if (!open) openResume()
         loadFrame()
+      } else if (open) {
+        closeResume()
       }
     }
     openFromHash()
     window.addEventListener('hashchange', openFromHash)
-    return () => window.removeEventListener('hashchange', openFromHash)
-  }, [loadFrame, open, openResume])
+    window.addEventListener('popstate', openFromHash)
+    return () => {
+      window.removeEventListener('hashchange', openFromHash)
+      window.removeEventListener('popstate', openFromHash)
+    }
+  }, [closeResume, loadFrame, open, openResume])
+
+  useEffect(() => {
+    if (!open) return
+    const closeOnLinkClick = (event: MouseEvent) => {
+      const target = event.target
+      if (!(target instanceof Element) || panelRef.current?.contains(target)) return
+      if (target.closest('a[href]')) closeResume()
+    }
+    document.addEventListener('click', closeOnLinkClick, true)
+    return () => document.removeEventListener('click', closeOnLinkClick, true)
+  }, [closeResume, open])
 
   useEffect(() => {
     if (src || shouldSkipPreload()) return
@@ -166,7 +205,7 @@ export function ResumeProvider({ children }: { children: ReactNode }) {
   }, [closeResume, open])
 
   return (
-    <ResumeContext.Provider value={{ openResume }}>
+    <ResumeContext.Provider value={{ openResume, closeResume }}>
       {children}
       {src && (
         <iframe

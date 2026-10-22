@@ -12,10 +12,10 @@ import { ResumeProvider } from '@/components/ResumeViewer'
 
 export default function App() {
   return (
-    <ResumeProvider>
-      <HelmetProvider>
-        <ToastProvider>
-          <BrowserRouter>
+    <HelmetProvider>
+      <ToastProvider>
+        <BrowserRouter>
+          <ResumeProvider>
             <Routes>
               <Route element={<Layout />}>
                 <Route index element={<Home />} />
@@ -26,9 +26,9 @@ export default function App() {
                 <Route path="*" element={<NotFound />} />
               </Route>
             </Routes>
-          </BrowserRouter>
-        </ToastProvider>
-      </HelmetProvider>
-    </ResumeProvider>
+          </ResumeProvider>
+        </BrowserRouter>
+      </ToastProvider>
+    </HelmetProvider>
   )
 }

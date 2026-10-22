@@ -53,7 +53,7 @@ export function ProjectDetail() {
         description={project.oneLiner}
         path={`/work/${project.slug}`}
       />
-      <article className="content-width py-16 sm:py-20">
+      <article className="content-width py-14 sm:py-20">
         <Reveal>
           <Link
             to="/work"
@@ -68,7 +68,7 @@ export function ProjectDetail() {
           {project.dateRange ? (
             <p className="mono-meta mt-2">{project.dateRange}</p>
           ) : null}
-          <p className="mt-4 text-lg text-[var(--muted)]">{project.oneLiner}</p>
+          <p className="mt-4 max-w-[640px] text-lg text-[var(--muted)]">{project.oneLiner}</p>
           <div className="mt-4 space-y-2">
             <StatRow stats={project.stats} />
             <Tags tags={project.tags} />
@@ -79,12 +79,12 @@ export function ProjectDetail() {
           <div className="mt-8 divide-y divide-[var(--border)] border-y border-[var(--border)]">
             {project.overview && (
               <Section title="Overview">
-                <p className="text-[var(--muted)]">{project.overview}</p>
+                <p className="max-w-[640px] text-[var(--muted)]">{project.overview}</p>
               </Section>
             )}
             {project.problem && (
               <Section title="Problem">
-                <p className="text-[var(--muted)]">{project.problem}</p>
+                <p className="max-w-[640px] text-[var(--muted)]">{project.problem}</p>
               </Section>
             )}
             {project.whatIBuilt.length > 0 && (

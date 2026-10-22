@@ -23,7 +23,7 @@ export function About() {
         description={`About ${profile.name} — Computer Science student at SRM IST working on ML systems and full-stack products.`}
         path="/about"
       />
-      <div className="content-width print-resume py-16 sm:py-20">
+      <div className="content-width print-resume py-14 sm:py-20">
         <div className="print-only mb-6">
           <h1 className="text-2xl font-semibold">{profile.name}</h1>
           <p className="text-sm">
@@ -58,7 +58,7 @@ export function About() {
         <Reveal>
           <section className="mt-12">
             <h2 className="mb-4 text-xl font-semibold">Bio</h2>
-            <p className="text-[var(--muted)]">{profile.about}</p>
+            <p className="max-w-[640px] whitespace-pre-line text-[var(--muted)]">{profile.about}</p>
           </section>
         </Reveal>
 

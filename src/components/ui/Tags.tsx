@@ -15,11 +15,13 @@ export function Tags({
   return (
     <p
       className={cn(
-        'font-mono text-[0.7rem] tracking-wide text-[var(--muted)]',
+        'flex flex-wrap gap-x-3 gap-y-1 font-mono text-[0.7rem] tracking-wide text-[var(--muted)]',
         className,
       )}
     >
-      {tags.join(' · ')}
+        {tags.map((tag) => (
+          <span key={tag}>{tag}</span>
+        ))}
     </p>
   )
 }

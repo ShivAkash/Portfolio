@@ -7,7 +7,7 @@ import {
   type ProjectCategory,
 } from '@/data/content'
 import { Seo } from '@/components/Seo'
-import { ProjectRow } from '@/components/ProjectCard'
+import { ProjectCard } from '@/components/ProjectCard'
 import { Reveal } from '@/components/ui/Reveal'
 import { cn } from '@/lib/utils'
 
@@ -70,24 +70,26 @@ export function Work() {
           </div>
         </LayoutGroup>
 
-        <div className="mt-2">
+        <div className="mt-6">
           {filtered.length === 0 ? (
             <p className="py-12 text-sm text-[var(--muted)]">
               No projects in this category yet.
             </p>
           ) : (
             <LayoutGroup>
-              {filtered.map((p) => (
-                <motion.div
-                  key={p.slug}
-                  layout
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{ duration: 0.15 }}
-                >
-                  <ProjectRow project={p} />
-                </motion.div>
-              ))}
+              <div className="grid gap-5 min-[700px]:grid-cols-2">
+                {filtered.map((p) => (
+                  <motion.div
+                    key={p.slug}
+                    layout
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ duration: 0.15 }}
+                  >
+                    <ProjectCard project={p} />
+                  </motion.div>
+                ))}
+              </div>
             </LayoutGroup>
           )}
         </div>
